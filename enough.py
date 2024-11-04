@@ -49,7 +49,7 @@ kedi1 = r"""
 
 
 def titresim():
-    titresim_is = threading.Thread(target=system, args=["termux-vibrate -d 350 -f"])
+    titresim_is = threading.Thread(target=system, args=["termux-vibrate -d 3500 -f"])
     titresim_is.start()
 
 system("cls||clear")
@@ -153,7 +153,6 @@ while 1:
                         executor.submit(send_sms.Tazi),
                         executor.submit(send_sms.TiklaGelsin),
                         executor.submit(send_sms.ToptanTeslim),
-                        executor.submit(send_sms.Ucdortbes),
                         executor.submit(send_sms.Uysal),
                         executor.submit(send_sms.Wmf),
                         executor.submit(send_sms.Yapp),

