@@ -49,18 +49,18 @@ kedi1 = r"""
 
 
 def titresim():
-    titresim_is = threading.Thread(target=system, args=["termux-vibrate -d 75 -f"])
+    titresim_is = threading.Thread(target=system, args=["termux-vibrate -d 350 -f"])
     titresim_is.start()
 
 system("cls||clear")
 print(fade.blackwhite(kedi))
+titresim
 time.sleep(5)
 system("cls||clear")
 print(fade.blackwhite(kedi1))
 time.sleep(3)
 
 while 1:
-    titresim()
     system("cls||clear")
     print(fade.pinkred(ascii_yazi))
     try:
