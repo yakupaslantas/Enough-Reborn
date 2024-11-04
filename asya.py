@@ -64,7 +64,7 @@ asya   \(__)|       Gidemeyen sms sayisi  : {Fore.RED}{Style.BRIGHT}{sms.basaris
 
 system("cls||clear")
 print(fade.blackwhite(kedi))
-titresim
+titresim()
 time.sleep(5)
 system("cls||clear")
 print(fade.blackwhite(kedi1))
