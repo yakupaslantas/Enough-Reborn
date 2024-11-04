@@ -49,7 +49,6 @@ kedi1 = r"""
 
 
 def titresim():
-    return
     titresim_is = threading.Thread(target=system, args=["termux-vibrate -d 75 -f"])
     titresim_is.start()
 
